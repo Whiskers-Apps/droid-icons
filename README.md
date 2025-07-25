@@ -55,13 +55,14 @@ The library requires the app to have Query All Packages permission but it might 
 ```
 
 ### Install
-Add jitpack to settings.gradle.kts
+Add jitpack url in settings.gradle.kts
 ```gradle
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-      //...
-      maven("https://jitpack.io")
+        maven {
+            setUrl("https://jitpack.io")
+        }
   }
 }
 ```
