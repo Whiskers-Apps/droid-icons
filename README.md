@@ -68,5 +68,5 @@ dependencyResolutionManagement {
 
 Add the library as dependency
 ```gradle
-implementation ("com.github.whiskers-apps:droid-icons:0.1.0")
+implementation ("com.github.Whiskers-Apps:droid-icons:0.1.0")
 ```
