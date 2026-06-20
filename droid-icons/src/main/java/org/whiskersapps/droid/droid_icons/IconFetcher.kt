@@ -3,7 +3,9 @@ package org.whiskersapps.droid.droid_icons
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.LauncherApps
 import android.graphics.drawable.AdaptiveIconDrawable
+import android.os.Process
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import org.whiskersapps.droid.droid_icons.models.Icon
@@ -14,6 +16,7 @@ class IconFetcher(
     private val context: Context,
 ) {
     private val packageManager = context.packageManager
+    private val launcherApps = context.getSystemService(Context.LAUNCHER_APPS_SERVICE) as LauncherApps
     private val packIntent = Intent("com.novalauncher.THEME")
     private var iconPacks: List<IconPack> = packageManager.queryIntentActivities(packIntent, 0)
         .map {
@@ -33,6 +36,29 @@ class IconFetcher(
 
     /** Get the default app icon */
     fun getStockIcon(packageName: String): Icon {
+        val activityList = launcherApps.getActivityList(packageName, Process.myUserHandle())
+
+        if (activityList.isNotEmpty()) {
+            val density = context.resources.displayMetrics.densityDpi
+            val drawable = activityList[0].getIcon(density)
+
+            if (drawable is AdaptiveIconDrawable) {
+                return Icon(
+                    drawable = drawable,
+                    adaptive = Icon.Adaptive(
+                        background = if (drawable.background.intrinsicHeight > 0) drawable.background else null,
+                        foreground = drawable.foreground
+                    )
+                )
+            }
+
+            return Icon(
+                drawable = drawable,
+                adaptive = null
+            )
+        }
+
+        // Fallback Method
         val info = packageManager.getApplicationInfo(packageName, 0)
         val drawable = packageManager.getApplicationIcon(info)
 
@@ -129,7 +155,6 @@ class IconFetcher(
                                 }
                             }
                         }
-
                     }
                 }
                 eventType = parser.next()
