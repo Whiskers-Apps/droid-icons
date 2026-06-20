@@ -56,10 +56,7 @@ class MainActivity : ComponentActivity() {
 
         val iconFetcher = IconFetcher(this.application)
         val packageNames = listOf(
-            "com.google.android.documentsui",
-            "com.google.android.apps.docs",
             "com.android.settings",
-            "com.google.android.youtube"
         )
 
         fun getIcons(iconPack: IconPack? = null): List<Icon> {

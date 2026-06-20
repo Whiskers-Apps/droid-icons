@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "org.whiskersapps.droid.droid_icons"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 26
@@ -47,7 +47,7 @@ publishing {
 
             artifactId = "droid-icons"
 
-            version = "0.1.0"
+            version = "1.0.0"
 
             afterEvaluate {
                 from(components["release"])
