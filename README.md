@@ -7,7 +7,7 @@
 </div>
 
 ### About
-This library is able to fetch icons from Icon Packs. It was made because i needed a way to get icons on claw launcher.
+This library is able to fetch icons from Icon Packs. It was made because i needed a way to get icons on mordomo launcher.
 
 <div align="center">
         <img src="./stock-preview.png" width="240"> 
@@ -69,5 +69,5 @@ dependencyResolutionManagement {
 
 Add the library as dependency
 ```gradle
-implementation ("com.github.Whiskers-Apps:droid-icons:0.1.0")
+implementation ("com.github.Whiskers-Apps:droid-icons:1.0.0")
 ```
