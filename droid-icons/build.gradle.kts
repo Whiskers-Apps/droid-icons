@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "org.whiskersapps.droid.droid_icons"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
